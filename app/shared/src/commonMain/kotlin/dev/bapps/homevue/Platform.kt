@@ -1,7 +1,12 @@
 package dev.bapps.homevue
 
-interface Platform {
-    val name: String
+internal interface Platform {
+    val isDebug: Boolean
+
+    companion object {
+        val current: Platform
+            get() = getPlatform()
+    }
 }
 
-expect fun getPlatform(): Platform
+internal expect fun getPlatform(): Platform

@@ -11,10 +11,13 @@ import com.bapps.homevue.core.design.atoms.text.clause.TextClause
 import com.bapps.homevue.core.design.atoms.text.clause.drawableClause
 import com.bapps.homevue.core.design.atoms.text.clause.plus
 import com.bapps.homevue.core.design.atoms.text.clause.textClause
+import dev.bapps.homevue.core.logger.DebugLogger
+import dev.bapps.homevue.core.logger.Logger
 
 
 @Composable
 fun App() {
+    Logger.debug("App composable")
     Text(
         text = textClause("Hello,") +
                 TextClause.whitespace +

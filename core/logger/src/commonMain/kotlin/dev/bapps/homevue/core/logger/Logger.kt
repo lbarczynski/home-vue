@@ -1,7 +1,7 @@
 package dev.bapps.homevue.core.logger
 
 interface Logger {
-    fun subLogger(subTag: String) : Logger
+    fun subLogger(subTag: String): Logger
     fun log(level: LogLevel, message: String, error: Throwable? = null)
     fun log(tag: String, level: LogLevel, message: String, error: Throwable? = null)
 
@@ -50,7 +50,11 @@ interface Logger {
         private var instance: Logger? = null
 
         fun initialize(vararg loggers: Logger) {
-            instance = CombinedLogger(loggers.toList())
+            initialize(loggers.toList())
+        }
+
+        fun initialize(loggers: List<Logger>) {
+            instance = CombinedLogger(loggers)
         }
 
         override fun subLogger(subTag: String): Logger {
