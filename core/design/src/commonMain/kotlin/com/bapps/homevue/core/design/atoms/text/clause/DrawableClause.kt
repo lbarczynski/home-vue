@@ -24,18 +24,30 @@ import com.bapps.homevue.core.design.atoms.image.drawable
 data class DrawableClause(
     val drawable: Drawable,
     val identifier: String = randomIdentifier(),
-    val alternateText: String = drawable.contentDescription ?: REPLACEMENT_CHAR
+    val alternateText: TextClause = drawable.contentDescription ?: DefaultReplacementAlternateText
 ) : Clause
 
-fun drawableClause(vector: ImageVector, contentDescription: String? = null): DrawableClause =
-    DrawableClause(drawable(vector, contentDescription))
+fun drawableClause(
+    vector: ImageVector,
+    contentDescription: TextClause? = null,
+    style: Drawable.Style? = null
+): DrawableClause {
+    val drawable = drawable(
+        vector = vector,
+        contentDescription = contentDescription,
+        style = style
+    )
+    return DrawableClause(drawable)
+}
 
-internal class DrawableClauseParser : Parser<DrawableClause> {
+internal class DrawableClauseParser(
+    private val textClauseParser : Parser<TextClause> = TextClauseParser()
+) : Parser<DrawableClause> {
     override fun parse(clause: DrawableClause): AnnotatedString {
         return buildAnnotatedString {
             appendInlineContent(
                 id = clause.identifier,
-                alternateText = clause.alternateText
+                alternateText = textClauseParser.parse(clause.alternateText).text
             )
         }
     }
@@ -55,7 +67,7 @@ internal fun DrawableClause.inlineTextContent(textHeight: TextUnit, color: Color
                     .fillMaxSize(),
                 drawable = drawable,
                 colorFilter = color
-                    .takeIf { it.isSpecified }
+                    .takeIf { color.isSpecified && drawable.style == null }
                     ?.let { ColorFilter.tint(color) }
             )
         }
@@ -67,8 +79,8 @@ private fun widthMultiplier(drawable: Drawable): Float = when (drawable) {
     is Drawable.Vector -> drawable.vector.defaultWidth.value / drawable.vector.defaultHeight.value
 }
 
-private const val REPLACEMENT_CHAR = "\uFFFD"
 private const val ID_LENGTH = 64
+private val DefaultReplacementAlternateText = textClause("\uFFFD")
 private val ID_CHARS = ('a'..'z') + ('0'..'9')
 private fun randomIdentifier(): String =
     (1..ID_LENGTH).asSequence()

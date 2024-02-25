@@ -1,5 +1,6 @@
 package com.bapps.homevue.core.design.atoms.text.clause
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.text.AnnotatedString
@@ -26,3 +27,8 @@ internal class ClauseParser(
 }
 
 internal val LocalClauseParser = compositionLocalOf { ClauseParser() }
+
+@Composable
+internal fun parse(clause: Clause) : AnnotatedString {
+    return LocalClauseParser.current.parse(clause)
+}

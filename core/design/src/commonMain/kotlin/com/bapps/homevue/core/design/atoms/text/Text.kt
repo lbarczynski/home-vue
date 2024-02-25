@@ -27,6 +27,7 @@ import com.bapps.homevue.core.design.atoms.text.clause.DrawableClause
 import com.bapps.homevue.core.design.atoms.text.clause.LocalClauseParser
 import com.bapps.homevue.core.design.atoms.text.clause.TextClause
 import com.bapps.homevue.core.design.atoms.text.clause.inlineTextContent
+import com.bapps.homevue.core.design.atoms.text.clause.parse
 
 @Composable
 fun Text(
@@ -49,7 +50,7 @@ fun Text(
     style: TextStyle = LocalTextStyle.current
 ) {
     androidx.compose.material.Text(
-        text = LocalClauseParser.current.parse(text),
+        text = parse(clause = text),
         modifier = modifier,
         color = color,
         fontSize = fontSize,
