@@ -1,16 +1,19 @@
+import org.jetbrains.compose.ExperimentalComposeLibrary
+
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.compose)
 }
 
 kotlin {
+    jvmToolchain(17)
+    jvm { jvmToolchain(17) }
+
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
+            kotlinOptions.jvmTarget = "17"
         }
     }
     iosX64()
@@ -34,6 +37,7 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
+            @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
         }
         commonTest.dependencies {
@@ -49,13 +53,11 @@ kotlin {
 android {
     namespace = "dev.bapps.homevue.core.design"
     compileSdk = 34
+
     defaultConfig {
         minSdk = 26
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
     }

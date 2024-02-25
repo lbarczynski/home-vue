@@ -1,17 +1,20 @@
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.kotlinCocoapods)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.android.library)
 }
 
 kotlin {
+    jvmToolchain(17)
+    jvm { jvmToolchain(17) }
+
     androidTarget {
         compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
+            kotlinOptions.jvmTarget = "17"
         }
     }
+
+    androidTarget()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -26,7 +29,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
@@ -40,14 +43,12 @@ kotlin {
 android {
     namespace = "dev.bapps.homevue.core.logger"
     compileSdk = 34
+
     defaultConfig {
         minSdk = 26
     }
+
     buildFeatures {
         buildConfig = true
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
