@@ -12,11 +12,11 @@ internal class CombinedClauseParser(
 ) : Parser<CombinedClause> {
     override fun parse(clause: CombinedClause): AnnotatedString {
         return clause.innerClauses
-            .map { clause: Clause ->
-                when(clause) {
-                    is CombinedClause -> parse(clause)
-                    is DrawableClause -> drawableClauseParser.parse(clause)
-                    is TextClause -> textClauseParser.parse(clause)
+            .map { innerClause: Clause ->
+                when(innerClause) {
+                    is CombinedClause -> parse(innerClause)
+                    is DrawableClause -> drawableClauseParser.parse(innerClause)
+                    is TextClause -> textClauseParser.parse(innerClause)
                 }
             }
             .reduce { acc, annotatedString -> acc + annotatedString }

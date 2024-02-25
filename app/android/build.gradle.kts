@@ -4,13 +4,14 @@ plugins {
     alias(libs.plugins.compose)
 }
 
-kotlin {
-    jvmToolchain { languageVersion = JavaLanguageVersion.of(17) }
-}
+//kotlin {
+//    jvmToolchain { languageVersion = JavaLanguageVersion.of(17) }
+//}
 
 android {
     namespace = "dev.bapps.homevue.android"
     compileSdk = 34
+
     defaultConfig {
         applicationId = "dev.bapps.homevue.android"
         minSdk = 26
@@ -20,7 +21,7 @@ android {
     }
     buildFeatures {
         buildConfig = true
-        compose = true
+//        compose = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
