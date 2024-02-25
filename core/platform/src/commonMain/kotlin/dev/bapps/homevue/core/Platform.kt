@@ -1,6 +1,6 @@
-package dev.bapps.homevue
+package dev.bapps.homevue.core
 
-internal interface Platform {
+interface Platform {
     val isDebug: Boolean
 
     companion object {

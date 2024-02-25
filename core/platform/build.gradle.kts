@@ -1,10 +1,7 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.compose)
 }
 
 kotlin {
@@ -18,24 +15,15 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
         ios.deploymentTarget = "16.0"
-        podfile = project.file("../ios/Podfile")
         framework {
-            baseName = "app_shared"
+            baseName = "platform"
             isStatic = true
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":core:logger"))
-            implementation(project(":core:design"))
-            implementation(project(":core:platform"))
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
-            implementation(compose.components.resources)
+            //put your multiplatform dependencies here
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -44,10 +32,14 @@ kotlin {
 }
 
 android {
-    namespace = "dev.bapps.homevue"
+    namespace = "dev.bapps.homevue.core.platform"
     compileSdk = 34
 
     defaultConfig {
         minSdk = 26
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }

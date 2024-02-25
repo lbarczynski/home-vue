@@ -1,10 +1,10 @@
 package dev.bapps.homevue.core.logger
 
 internal class CombinedLogger(private val innerLoggers: List<Logger>) : Logger {
-    override fun subLogger(tag: String): Logger {
+    override fun subLogger(subTag: String): Logger {
         return CombinedLogger(
             innerLoggers = innerLoggers
-                .map { it.subLogger(tag) }
+                .map { it.subLogger(subTag) }
         )
     }
 

@@ -18,7 +18,8 @@ dependencyResolutionManagement {
 rootProject.name = "HomeVue"
 include(
     ":core:logger",
-    ":core:design"
+    ":core:design",
+    ":core:platform",
 )
 include(
     ":app:shared",
