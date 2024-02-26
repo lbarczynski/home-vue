@@ -7,22 +7,25 @@ plugins {
     alias(libs.plugins.kotlin.android).apply(false)
     alias(libs.plugins.kotlin.multiplatform).apply(false)
     alias(libs.plugins.kotlin.cocoapods).apply(false)
+    alias(libs.plugins.test.mokkery).apply(false)
 }
 
 subprojects {
     afterEvaluate {
         configureSafe<KotlinMultiplatformExtension> {
-            jvmToolchain(17)
+            jvmToolchain(jdkVersion)
             androidTarget {
-                jvmToolchain(17)
+                jvmToolchain(jdkVersion)
             }
         }
 
         configureSafe<KotlinAndroidProjectExtension> {
-            jvmToolchain(17)
+            jvmToolchain(jdkVersion)
         }
     }
 }
+
+val jdkVersion : Int = libs.versions.jdk.get().toInt()
 
 inline fun <reified T : Any> Project.configureSafe(noinline action: T.() -> Unit) {
     if (extensions.findByType(T::class) != null) configure<T>(action)

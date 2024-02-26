@@ -2,11 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
+    alias(libs.plugins.test.mokkery)
 }
-
-//kotlin {
-//    jvmToolchain { languageVersion = JavaLanguageVersion.of(17) }
-//}
 
 android {
     namespace = "dev.bapps.homevue.android"
@@ -21,10 +18,6 @@ android {
     }
     buildFeatures {
         buildConfig = true
-//        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {

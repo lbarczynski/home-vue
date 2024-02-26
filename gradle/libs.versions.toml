@@ -1,16 +1,19 @@
 [versions]
-agp = "8.2.2"
-kotlin = "1.9.20"
+android-gradle-plugin = "8.2.2"
+kotlin = "1.9.22"
 androidx-activityCompose = "1.8.2"
 compose-plugin = "1.5.12"
+test-mokkery = "1.9.22-1.4.0"
+jdk = "17"
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+test-mokkery = { id = "dev.mokkery", version.ref = "test-mokkery" }
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.cocoapods)
     alias(libs.plugins.android.library)
     alias(libs.plugins.compose)
+    alias(libs.plugins.test.mokkery)
 }
 
 kotlin {
@@ -49,9 +50,5 @@ android {
 
     defaultConfig {
         minSdk = 26
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }

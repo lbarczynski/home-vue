@@ -15,8 +15,7 @@ sealed class TextClause : Clause {
     }
 }
 
-fun textClause(text: String): TextClause =
-    TextClause.Plain(text)
+fun textClause(text: String) = TextClause.Plain(text)
 
 internal class TextClauseParser : Parser<TextClause> {
     override fun parse(clause: TextClause): AnnotatedString {
