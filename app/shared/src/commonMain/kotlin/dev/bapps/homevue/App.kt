@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.bapps.homevue.core.design.atoms.image.Drawable
 import com.bapps.homevue.core.design.atoms.text.Text
@@ -11,6 +12,7 @@ import com.bapps.homevue.core.design.atoms.text.clause.TextClause
 import com.bapps.homevue.core.design.atoms.text.clause.drawableClause
 import com.bapps.homevue.core.design.atoms.text.clause.localizedClause
 import com.bapps.homevue.core.design.atoms.text.clause.plus
+import com.bapps.homevue.core.design.atoms.text.clause.style.ClauseStyle
 import com.bapps.homevue.core.design.atoms.text.clause.textClause
 import dev.bapps.homevue.core.logger.Logger
 import homevue.app.shared.generated.resources.Res
@@ -26,7 +28,10 @@ fun App() {
     Text(
         text = textClause("Hello,") +
                 TextClause.whitespace +
-                localizedClause(Res.string.hello_world) +
+                localizedClause(
+                    Res.string.hello_world,
+                    style = ClauseStyle(isUnderlined = true, fontWeight = FontWeight.Black)
+                ) +
                 TextClause.whitespace +
                 drawableClause(
                     vector = Icons.Default.ThumbUp,
