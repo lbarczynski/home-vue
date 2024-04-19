@@ -9,19 +9,24 @@ import com.bapps.homevue.core.design.atoms.image.Drawable
 import com.bapps.homevue.core.design.atoms.text.Text
 import com.bapps.homevue.core.design.atoms.text.clause.TextClause
 import com.bapps.homevue.core.design.atoms.text.clause.drawableClause
+import com.bapps.homevue.core.design.atoms.text.clause.localizedClause
 import com.bapps.homevue.core.design.atoms.text.clause.plus
 import com.bapps.homevue.core.design.atoms.text.clause.textClause
-import dev.bapps.homevue.core.logger.DebugLogger
 import dev.bapps.homevue.core.logger.Logger
+import homevue.app.shared.generated.resources.Res
+import homevue.app.shared.generated.resources.hello_world
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
     Logger.debug("App composable")
+
     Text(
         text = textClause("Hello,") +
                 TextClause.whitespace +
-                textClause("WORLD!") +
+                localizedClause(Res.string.hello_world) +
                 TextClause.whitespace +
                 drawableClause(
                     vector = Icons.Default.ThumbUp,

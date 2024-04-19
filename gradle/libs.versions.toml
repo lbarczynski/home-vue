@@ -1,9 +1,7 @@
 [versions]
-android-gradle-plugin = "8.2.2"
-kotlin = "1.9.22"
-androidx-activityCompose = "1.8.2"
-compose-plugin = "1.5.12"
-test-mokkery = "1.9.22-1.4.0"
+android-gradle-plugin = "8.3.2"
+kotlin = "1.9.23"
+compose = "1.6.2"
 jdk = "17"
 
 [plugins]
@@ -12,9 +10,9 @@ android-library = { id = "com.android.library", version.ref = "android-gradle-pl
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
-test-mokkery = { id = "dev.mokkery", version.ref = "test-mokkery" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+test-mokkery = { id = "dev.mokkery", version = "1.9.23-1.6.1" }
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version = "1.9.0" }

@@ -43,7 +43,7 @@ fun drawableClause(
 internal class DrawableClauseParser(
     private val textClauseParser : Parser<TextClause> = TextClauseParser()
 ) : Parser<DrawableClause> {
-    override fun parse(clause: DrawableClause): AnnotatedString {
+    override suspend fun parse(clause: DrawableClause): AnnotatedString {
         return buildAnnotatedString {
             appendInlineContent(
                 id = clause.identifier,
